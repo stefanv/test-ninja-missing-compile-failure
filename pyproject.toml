@@ -1,0 +1,50 @@
+[project]
+name = "example_pkg"
+version = "0.0dev0"
+requires-python = ">=3.7"
+description = "spin Example Package"
+
+[build-system]
+build-backend = "mesonpy"
+requires = [
+  "meson-python>=0.13.0rc0",
+]
+
+[tool.spin]
+package = 'example_pkg'
+
+[tool.spin.commands]
+# If you don't need sections, you can also provide a list of commands under [tool.spin]:
+#
+# commands = [
+#   "spin.cmds.meson.build",
+#   "spin.cmds.meson.test",
+#   "spin.cmds.meson.shell",
+#   "spin.cmds.meson.ipython",
+#   "spin.cmds.meson.python",
+#   ".spin/cmds.py:example"
+# ]
+
+"Build" = [
+  "spin.cmds.meson.build",
+  "spin.cmds.meson.test",
+  "spin.cmds.build.sdist",
+  "spin.cmds.pip.install",
+]
+"Documentation" = [
+  "spin.cmds.meson.docs"
+]
+"Environments" = [
+  "spin.cmds.meson.shell",
+  "spin.cmds.meson.ipython",
+  "spin.cmds.meson.python",
+  "spin.cmds.meson.run"
+]
+"Debug" = [
+  "spin.cmds.meson.gdb",
+  "spin.cmds.meson.lldb"
+]
+"Extensions" = [".spin/cmds.py:example"]
+"Install" = [
+  "spin.cmds.pip.install"
+]
